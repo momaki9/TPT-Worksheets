@@ -22,7 +22,7 @@ const reactions = [
 const randomRxn = function(arr) {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
-}
+};
 
 const lowRandomMass = () => {
     const lowRandomValue = Math.random() * 9 + 1;
@@ -54,6 +54,6 @@ mmEnding.textContent = instanceRxn.molarMass[2];
 const teacherAnswer = function() {
     const answer = parseFloat(instanceMass) / instanceRxn.molarMass[2] * instanceRxn.coefficients[0] / instanceRxn.coefficients[2];    
     return answer.toFixed(3);
-}
+};
 
 document.getElementById('TA-one').textContent = teacherAnswer();

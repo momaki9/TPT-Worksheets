@@ -2,6 +2,7 @@ const molarity = document.getElementById('molarity');
 const weakAcid = document.getElementById('weak-acid');
 const teacherAnswer = document.getElementById('teacher-answer');
 const pka = document.getElementById('instance-pka');
+const acidName = document.getElementById('acid-name');
 
 const randomValue = Math.random(0).toFixed(3);
 molarity.textContent = randomValue;
@@ -9,24 +10,39 @@ molarity.textContent = randomValue;
 const weakAcidObj = [
     {
         acid: "HF",
-        pka: 0.00035
+        name: "hydrofluoric acid",
+        ka: 0.000631
     },
     {
         acid: "CH3COOH",
-        pka: 0.0000158
+        name: "acetic acid",
+        ka: 0.0000175
     },
     {
         acid: "HCN",
-        pka: 0.00000000049
+        name: "hydrocyanic acid",
+        ka: 0.000000000617
     },
     {
-        acid: "H2S",
-        pka: 0.000000095
+        acid: "HNO2",
+        name: "nitrous acid",
+        ka: 0.000562
     },
     {
-        acid: "H3PO4",
-        pka: 0.0076
-    }        
+        acid: "C6H5COOH",
+        name: "benzoic acid",
+        ka: 0.0000625
+    },
+    {
+        acid: "HClO2",
+        name: "chlorous acid",
+        ka: 0.0115
+    },
+    {
+        acid: "HClO",
+        name: "hypochlorous acid",
+        ka: 0.0000000398
+    }                    
 ]
 
 const randomIndex = (arr) => {
@@ -41,10 +57,12 @@ const instanceGenerstor = (arr) => {
 
 const chosenInstance = instanceGenerstor(weakAcidObj);
 const instanceFormula = chosenInstance.acid;
-const instancepKa = chosenInstance.pka;
+const instancepKa = chosenInstance.ka;
+const acidFormula = chosenInstance.name;
 
 weakAcid.textContent = instanceFormula;
 pka.textContent = instancepKa;
+acidName.textContent = acidFormula;
 
 const calculateAnswer = () => {
     const stepOne = instancepKa * randomValue;
