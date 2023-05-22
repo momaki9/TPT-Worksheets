@@ -100,7 +100,7 @@ const chosenVolume = randomNumber(1);
 document.getElementById('soln-volume').textContent = chosenVolume;
 document.getElementById('mm').textContent = chosenInstVTwo.mm;
 document.getElementById('ka-v2').textContent = chosenInstVTwo.ka;
-// Answers is calculated by first converting the mass to moles using the molar mass, then finding the molarity. 
+// Answers are calculated by first converting the mass to moles using the molar mass, then finding the molarity. 
 // next use the ka to find the [H+] from which the pH and pOH can be determined
 const versionTwoAnswer = () => {
     const moles = chosenMass / chosenInstVTwo.mm;
@@ -115,3 +115,42 @@ const versionTwoAnswer = () => {
 };
 
 versionTwoAnswer();
+
+// version 3
+const chosenInstVThree = instanceGenerstor(weakAcidObj);
+document.getElementById('acid-name-v3').textContent = chosenInstVThree.name;
+document.getElementById('weak-acid-v3').textContent = chosenInstVThree.acid;
+document.getElementById('mm-v3').textContent = chosenInstVThree.mm;
+document.getElementById('ka-v3').textContent = chosenInstVThree.ka;
+const chosenVolumeVThreee = randomNumber(100);
+document.getElementById('soln-volume-v3').textContent = chosenVolumeVThreee;
+
+const randompOH = function(value) {
+    const randomV = Math.random(0) + value
+    return randomV.toFixed(3)
+};
+
+const chosenpOH = randompOH(10);
+document.getElementById('given-poh').textContent = chosenpOH;
+
+// Answer is calculated by first converting the pOH to pH, then converting to H+
+// use the Ka expression to calculate the molarity. Then convert to moles using the given volume. Finally convert moles to mass using the molar mass
+const versionThreeAnswer = () => {
+    const pH = 14 - chosenpOH;
+    const concH = Math.pow(10, -pH);
+    // x squared
+    const stepOne = Math.pow(concH, 2);
+    // molarity of acid
+    const stepTwo = stepOne / chosenInstVThree.ka
+    document.getElementById('v3-molarity').textContent = stepTwo;
+    // converting volume to liters
+    const stepThree = chosenVolumeVThreee / 1000;
+    // converting to moles
+    const stepFour = stepTwo * stepThree;
+    // converting to mass
+    const mass = stepFour * chosenInstVThree.mm
+    document.getElementById('v3-ans').textContent = mass;
+};
+
+// Make sure values are reasonable -- double check the math as well
+versionThreeAnswer();
