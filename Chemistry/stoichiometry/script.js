@@ -16,10 +16,29 @@ const reactions = [
         species: ["AgNO3", "NaCl", "AgCl", "NaNO3"],
         coefficients: [1, 1, 1, 1],
         molarMass: [169.87, 58.44, 143.32, 84.9947]
+    },
+    {
+        rxn: "2Fe+3H2SO4-->Fe2(SO4)3+3H2",
+        species: ["Fe", "H2SO4", "Fe2(SO4)3", "H2"],
+        coefficients: [2, 3, 1, 3],
+        molarMass: [55.845, 98.07228, 399.8598, 2.016]
+    },
+    {
+        rxn: "Mg(OH)2 + 2HCl --> MgCl2 + 2H2O",
+        species: ["Mg(OH)2", "HCl", "MgCl2", "H2O"],
+        coefficients: [1, 2, 1, 2],
+        molarMass: [58.31848, 36.45384, 95.196, 18.01528]
+    },
+    {
+        rxn: "2H3PO4 + 3Mg(OH)2 --> Mg3(PO4)2 + 6H2O",
+        species: ["H3PO4", "Mg(OH)2", "Mg3(PO4)2", "H2O"],
+        coefficients: [2, 3, 1, 6],
+        molarMass: [97.994882, 58.31848, 262.3854724, 18.01528]
     }
 ];
 
-const randomRxn = function(arr) {
+
+const randomRxn = function (arr) {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
 };
@@ -51,8 +70,8 @@ mmStarting.textContent = instanceRxn.molarMass[0];
 endingSpecies.textContent = instanceRxn.species[2];
 mmEnding.textContent = instanceRxn.molarMass[2];
 
-const teacherAnswer = function() {
-    const answer = parseFloat(instanceMass) / instanceRxn.molarMass[2] * instanceRxn.coefficients[0] / instanceRxn.coefficients[2];    
+const teacherAnswer = function () {
+    const answer = parseFloat(instanceMass) / instanceRxn.molarMass[2] * instanceRxn.coefficients[0] / instanceRxn.coefficients[2];
     return answer.toFixed(3);
 };
 
