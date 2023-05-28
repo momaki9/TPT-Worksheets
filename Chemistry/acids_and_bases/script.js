@@ -125,12 +125,12 @@ document.getElementById('ka-v3').textContent = chosenInstVThree.ka;
 const chosenVolumeVThreee = randomNumber(100);
 document.getElementById('soln-volume-v3').textContent = chosenVolumeVThreee;
 
-const randompOH = function(value) {
+const randompValue = function(value) {
     const randomV = Math.random(0) + value
     return randomV.toFixed(3)
 };
 
-const chosenpOH = randompOH(10);
+const chosenpOH = randompValue(10);
 document.getElementById('given-poh').textContent = chosenpOH;
 
 // Answer is calculated by first converting the pOH to pH, then converting to H+
@@ -154,3 +154,23 @@ const versionThreeAnswer = () => {
 
 // Make sure values are reasonable -- double check the math as well
 versionThreeAnswer();
+
+
+// version 4 (question #5)
+const instanceFiveQuestion = instanceGenerstor(weakAcidObj);
+document.getElementById('acid-name-v4').textContent = instanceFiveQuestion.acid;
+
+const instanceFivepH = randompValue(4);
+document.getElementById('given-ph').textContent = instanceFivepH;
+
+const versionFourAnswer = function () {
+    //convert given pH to [H+]
+    const concH = Math.pow(10, -instanceFivepH);
+    // use Ka expression to solve for molarity
+    const concHsquared = Math.pow(concH, 2);
+    const molarity = concHsquared/instanceFiveQuestion.ka;
+    document.getElementById('v4-answer').textContent = molarity;
+
+};
+
+versionFourAnswer();
