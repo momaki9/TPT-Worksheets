@@ -23,7 +23,7 @@ const generateNum = function (num1, num2, inc, dec) {
 
 // write a function that adds or subtracts two numbers and return the correct number of decimals
 // be sure to treat num1 and num2 as strings
-const addOrSubtract = function(num1, num2, operation){
+const addOrSubtract = function (num1, num2, operation) {
     var firstNum = Number(num1);
     var secondNum = Number(num2);
     var sum = 0;
@@ -35,12 +35,39 @@ const addOrSubtract = function(num1, num2, operation){
     var decimal1 = num1.toString().split('.')[1].length;
     var decimal2 = num2.toString().split('.')[1].length;
     var leastDecimal = Math.min(decimal1, decimal2)
-    var decimalHelper = 10**leastDecimal;
-    var answer = Math.round(sum * decimalHelper)/decimalHelper
+    var decimalHelper = 10 ** leastDecimal;
+    var answer = Math.round(sum * decimalHelper) / decimalHelper
     answer = answer.toFixed(leastDecimal);
     return answer;
 };
 
-console.log(addOrSubtract("4.051", "0.0094", "add"));
+// console.log(addOrSubtract("4.051", "0.0094", "add"));
 
+const multiplyOrDivide = function (num1, num2, operation) {
+    var firstNum = Number(num1);
+    var secondNum = Number(num2);
+    var total = 0;
+    if (operation == "multiply") {
+        total = Number(firstNum) * Number(secondNum);
+    } else if (operation == "divide") {
+        total = Number(firstNum) / Number(secondNum);
+    };
+    var decimal1 = num1.toString().split('.')[1].length;
+    var value1 = num1.toString().split('.')[0].length;
+    var digits1 = decimal1 + value1;
+    var decimal2 = num2.toString().split('.')[1].length;
+    var value2 = num2.toString().split('.')[0].length;
+    var digits2 = decimal2 + value2;
+    console.log(`num of sigfigs in first value is ${digits1} and in second value is ${digits2}`)
+    var leastSigFig = Math.min(digits1, digits2)
+    var value3 = total.toString().split('.')[0].length;
+    var decimalInAns = leastSigFig - value3;
+    console.log(leastSigFig)
+    console.log(decimalInAns)
+    var decimalHelper = 10 ** decimalInAns;
+    var answer = Math.round(total * decimalHelper) / decimalHelper
+    answer = answer.toFixed(decimalInAns);
+    return answer;
+};
 
+console.log(multiplyOrDivide("4.51", "1.405", "multiply"));
