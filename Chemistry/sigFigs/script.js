@@ -3,11 +3,18 @@ const numbers = [95.0, 0.04, 0.08, 0.0000098, 2023, 205000, 1.5003, 6.022, 0.020
 const divEl = document.getElementById("sig-fig");
 
 const randomValue = Math.random();
+
 let valueOne = numbers[0] * randomValue;
 valueOne = (Math.round(valueOne * 100) /100).toFixed(1)
 const questionOne = document.createElement("h3");
 questionOne.textContent = `1. Original value = 95.0; New value = ${valueOne}`;
 divEl.appendChild(questionOne);
+
+let valueTwo = numbers[1] * randomValue;
+valueTwo = (Math.round(valueTwo * 100) /100)
+const questionTwo = document.createElement("h3");
+questionTwo.textContent = `2. Original value(${numbers[1]}) = 4.0e-2; New value = ${valueTwo.toExponential(1)}`;
+divEl.appendChild(questionTwo);
 
 const random = function () {
     for (let index = 0; index < numbers.length; index++) {
