@@ -22,16 +22,16 @@ generateNumArr(19, 21, 0.1, 1);
 // write a function that randomly returns one value from an array (array given as param)
 const selectNum = function(arr) {
     var randomValue = arr[Math.floor(Math.random() * arr.length)];
-    console.log(randomValue);
+    // console.log(randomValue);
     return randomValue;
 };
 
 var testArr = generateNumArr(11, 12, 0.1, 1);
-console.log(testArr)
-console.log(selectNum(testArr))
+// console.log(testArr)
+// console.log(selectNum(testArr))
 
 
-// write a function that adds or subtracts two numbers and return the correct number of decimals
+// write a function that adds or subtracts two numbers and return the answer with correct number of sigfigs
 // be sure to treat num1 and num2 as strings
 const addOrSubtract = function (num1, num2, operation) {
     var firstNum = Number(num1);
@@ -53,6 +53,8 @@ const addOrSubtract = function (num1, num2, operation) {
 
 // console.log(addOrSubtract("4.051", "0.0094", "add"));
 
+// write a function that multiplies or divides  two numbers and return the answer with correct number of sigfigs
+// be sure to treat num1 and num2 as strings
 const multiplyOrDivide = function (num1, num2, operation) {
     var firstNum = Number(num1);
     var secondNum = Number(num2);
@@ -80,4 +82,4 @@ const multiplyOrDivide = function (num1, num2, operation) {
     return answer;
 };
 
-console.log(multiplyOrDivide("4.51", "1.405", "multiply"));
+// console.log(multiplyOrDivide("4.51", "1.405", "multiply"));
