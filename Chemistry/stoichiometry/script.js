@@ -66,7 +66,7 @@ const mmEnding = document.getElementById('mm-ending');
 instanceEquation.innerHTML = instanceRxn.rxn;
 startingSpecies.innerHTML = instanceRxn.species[0];
 mmStarting.textContent = instanceRxn.molarMass[0];
-endingSpecies.textContent = instanceRxn.species[2];
+endingSpecies.innerHTML = instanceRxn.species[2];
 mmEnding.textContent = instanceRxn.molarMass[2];
 
 const teacherAnswer = function () {

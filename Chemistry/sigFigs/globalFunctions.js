@@ -83,3 +83,16 @@ const multiplyOrDivide = function (num1, num2, operation) {
 };
 
 // console.log(multiplyOrDivide("4.51", "1.405", "multiply"));
+
+
+// write a function that uses stiochiometric coefficients to convert the mass of one species to the mass of another
+// this function takes in the following params: given mass (gMass), stoich1, stoich2 (stoichiometric coefficient of species 1 and 2)
+// mm1 and mm2, are the molar masses of species 1 and 2
+// returns the answer (in grams; does not take sigfigs into account)
+const massToMassStoic = function(gMass, stoich1, stoich2, mm1, mm2) {
+    const moles1 = gMass / mm1;
+    const stoichRatio = stoich2 / stoich1;
+    const moles2 = moles1 * stoichRatio;
+    const answer = moles2 * mm2;
+    return answer;
+};
