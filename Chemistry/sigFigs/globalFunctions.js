@@ -96,3 +96,12 @@ const massToMassStoic = function(gMass, stoich1, stoich2, mm1, mm2) {
     const answer = moles2 * mm2;
     return answer;
 };
+
+// write a function that compares two nums and returns the lowest value
+const compareAndReturnSmaller = function(num1, num2){
+    const array = [];
+    array.push(num1, num2);
+    const smallerValue = Math.min(...array);
+    return smallerValue;
+};
+
