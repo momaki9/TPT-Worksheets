@@ -113,3 +113,61 @@ document.getElementById('ans4').textContent = `Answer = ${finalAnswer4.toFixed(2
 
 const finalAnswer5 = compareAndReturnSmaller(firstAnswer5, secondAnswer5);
 document.getElementById('ans5').textContent = `Answer = ${finalAnswer5.toFixed(2)} g`;
+
+//second version
+
+// calculate excess reactant -- need a new function
+const qText1_2 = `For the reaction below, how much ${reactionInst1.species[3]} is produced if ${firstMass1} g of ${reactionInst1.species[0]} reacts with ${secondMass1} g of ${reactionInst1.species[1]}?`;
+// calculate other product as well
+const qText2_2 = `Given the following equation, find the limiting reactant when ${firstMass2} g of ${reactionInst2.species[0]} reacts with ${secondMass2} g of ${reactionInst2.species[1]}. How much ${reactionInst2.species[2]} can be produced?`;
+//one reactant given in moles
+const qText3_2 = `For the reaction below, how much ${reactionInst3.species[3]} is produced if ${firstMass3} g of ${reactionInst3.species[0]} reacts with ${secondMass3} g of ${reactionInst3.species[1]}?`;
+//one reactant given volume and molarity
+const qText4_2 = `Consider the reaction below. How much ${reactionInst4.species[2]} can be produced if ${firstMass4} g of ${reactionInst4.species[0]} reacts with ${secondMass4} g of ${reactionInst4.species[1]}?`;
+//calculate excess reactant
+const qText5_2 = `Find the limiting reagent and determine how much ${reactionInst5.species[3]} could be produced if ${firstMass5} g of ${reactionInst5.species[0]} reacts with ${secondMass5} g of ${reactionInst5.species[1]}.`;
+
+document.getElementById('LR-q1-2').innerHTML = qText1_2;
+document.getElementById('eqn1-2').innerHTML = reactionInst1.rxn;
+
+document.getElementById('LR-q2-2').innerHTML = qText2_2;
+document.getElementById('eqn2-2').innerHTML = reactionInst2.rxn;
+
+document.getElementById('LR-q3-2').innerHTML = qText3_2;
+document.getElementById('eqn3-2').innerHTML = reactionInst3.rxn;
+
+document.getElementById('LR-q4-2').innerHTML = qText4_2;
+document.getElementById('eqn4').innerHTML = reactionInst4.rxn;
+
+document.getElementById('LR-q5-2').innerHTML = qText5_2;
+document.getElementById('eqn5-2').innerHTML = reactionInst5.rxn;
+
+const firstAnswer1_2 = massToMassStoic(firstMass1, reactionInst1.coefficients[0],reactionInst1.coefficients[3], reactionInst1.molarMass[0], reactionInst1.molarMass[3]);
+const secondAnswer1_2 = massToMassStoic(secondMass1, reactionInst1.coefficients[1],reactionInst1.coefficients[3], reactionInst1.molarMass[1], reactionInst1.molarMass[3]);
+
+const firstAnswer2_2 = massToMassStoic(firstMass2, reactionInst2.coefficients[0],reactionInst2.coefficients[2], reactionInst2.molarMass[0], reactionInst2.molarMass[2]);
+const secondAnswer2_2 = massToMassStoic(secondMass2, reactionInst2.coefficients[1],reactionInst2.coefficients[2], reactionInst2.molarMass[1], reactionInst2.molarMass[2]);
+
+const firstAnswer3_2 = massToMassStoic(firstMass3, reactionInst3.coefficients[0],reactionInst3.coefficients[3], reactionInst3.molarMass[0], reactionInst3.molarMass[3]);
+const secondAnswer3_2 = massToMassStoic(secondMass3, reactionInst3.coefficients[1],reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
+
+const firstAnswer4_2 = massToMassStoic(firstMass4, reactionInst4.coefficients[0],reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
+const secondAnswer4_2 = massToMassStoic(secondMass4, reactionInst5.coefficients[1],reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
+
+const firstAnswer5_2 = massToMassStoic(firstMass5, reactionInst5.coefficients[0],reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
+const secondAnswer5_2 = massToMassStoic(secondMass5, reactionInst5.coefficients[1],reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
+
+const finalAnswer1_2 = compareAndReturnSmaller(firstAnswer1_2, secondAnswer1_2);
+document.getElementById('ans1-2').textContent = `Answer = ${finalAnswer1_2.toFixed(2)} g`;
+
+const finalAnswer2_2 = compareAndReturnSmaller(firstAnswer2_2, secondAnswer2_2);
+document.getElementById('ans2-2').textContent = `Answer = ${finalAnswer2_2.toFixed(2)} g`;
+
+const finalAnswer3_2 = compareAndReturnSmaller(firstAnswer3_2, secondAnswer3_2);
+document.getElementById('ans3-2').textContent = `Answer = ${finalAnswer3_2.toFixed(2)} g`;
+
+const finalAnswer4_2 = compareAndReturnSmaller(firstAnswer4_2, secondAnswer4_2);
+document.getElementById('ans4-2').textContent = `Answer = ${finalAnswer4_2.toFixed(2)} g`;
+
+const finalAnswer5_2 = compareAndReturnSmaller(firstAnswer5_2, secondAnswer5_2);
+document.getElementById('ans5-2').textContent = `Answer = ${finalAnswer5_2.toFixed(2)} g`;

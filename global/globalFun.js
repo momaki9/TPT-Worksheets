@@ -30,11 +30,11 @@ const calcPressOrVolum = function(knownVar,n,T,){
 const splitF = function(num){
     num = num + 0.00000000000001
     let test = num.toString();
-    console.log(typeof num);
-    console.log(typeof test);
+    // console.log(typeof num);
+    // console.log(typeof test);
     let numofDig = num.toString().split(".")[0].length;
     let numofDec = num.toString().split(".")[1].length;
     return [numofDig, numofDec]
 }
 
-console.log(splitF(23.40000))
+// console.log(splitF(23.40000))
