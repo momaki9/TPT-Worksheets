@@ -1,3 +1,18 @@
+
+/* TODO - add following rxns:
+
+2C6H14O4+15O2->12CO2+14H2O
+2Ag2O -> 4Ag + O2
+CO+2H2 -> CH3OH
+2Al+6HCl -> 2AlCl3 + 3H2
+Mg + 2HCl -> MgCl2 + H2
+4NH3 + 5O2 -> 4NO + 6H2O
+2NH3 + CO2 -> CO(NH2)2 + H2O
+2NaOH + Cl2 + 2NH3 -> N2H4 + 2NaCl + 2H2O
+3Cu + 8HNO3 -> 3Cu(NO3)2 + 4H2O + 2NO
+
+*/
+
 const reactions = [
     {
         rxn: "2Na + 2H<sub>2</sub>O &rarr; 2NaOH + H<sub>2</sub>",
