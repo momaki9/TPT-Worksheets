@@ -1,3 +1,31 @@
+//This function detemines the excess mass (in g) given mass of 2 reactants, their coefficients, and their molar masses
+//This function returns excess mass (excessMass)
+const excessMassFromLR = function (mass1, mass2, coef1, coef2, mm1, mm2, R1, R2) {
+    const moles1 = mass1 / mm1;
+    const moles2 = mass2 / mm2;
+    const moles2Needed = moles1 * (coef2 / coef1);
+    let molesUsed = 0;
+    let excessMass = 0;
+    let LR;
+    let ER;
+    if (moles2Needed > moles2) {
+        const moles1Needed = moles2 * (coef1 / coef2);
+        molesUsed = moles1 - moles1Needed;
+        excessMass = molesUsed * mm1;
+        LR = R2;
+        ER = R1;
+    } else if (moles2Needed < moles2) {
+        const moles2Needed = moles1 * (coef2 / coef1);
+        molesUsed = moles2 - moles2Needed;
+        excessMass = molesUsed * mm2;
+        LR = R1;
+        ER = R2;
+    } else {
+        excessMass = 0;
+    }
+    return [excessMass, LR, ER];
+};
+
 const reactions = [
     {
         rxn: "2Na + 2H<sub>2</sub>O &rarr; 2NaOH + H<sub>2</sub>",
@@ -42,7 +70,7 @@ const randomRxn = function (arr) {
     return arr[randomIndex];
 };
 
-const instanceNums = generateNumArr(11,50,0.01,2);
+const instanceNums = generateNumArr(11, 50, 0.01, 2);
 const firstMass1 = selectNum(instanceNums);
 const secondMass1 = selectNum(instanceNums);
 const reactionInst1 = randomRxn(reactions);
@@ -84,20 +112,20 @@ document.getElementById('eqn4').innerHTML = reactionInst4.rxn;
 document.getElementById('LR-q5').innerHTML = qText5;
 document.getElementById('eqn5').innerHTML = reactionInst5.rxn;
 
-const firstAnswer1 = massToMassStoic(firstMass1, reactionInst1.coefficients[0],reactionInst1.coefficients[3], reactionInst1.molarMass[0], reactionInst1.molarMass[3]);
-const secondAnswer1 = massToMassStoic(secondMass1, reactionInst1.coefficients[1],reactionInst1.coefficients[3], reactionInst1.molarMass[1], reactionInst1.molarMass[3]);
+const firstAnswer1 = massToMassStoic(firstMass1, reactionInst1.coefficients[0], reactionInst1.coefficients[3], reactionInst1.molarMass[0], reactionInst1.molarMass[3]);
+const secondAnswer1 = massToMassStoic(secondMass1, reactionInst1.coefficients[1], reactionInst1.coefficients[3], reactionInst1.molarMass[1], reactionInst1.molarMass[3]);
 
-const firstAnswer2 = massToMassStoic(firstMass2, reactionInst2.coefficients[0],reactionInst2.coefficients[2], reactionInst2.molarMass[0], reactionInst2.molarMass[2]);
-const secondAnswer2 = massToMassStoic(secondMass2, reactionInst2.coefficients[1],reactionInst2.coefficients[2], reactionInst2.molarMass[1], reactionInst2.molarMass[2]);
+const firstAnswer2 = massToMassStoic(firstMass2, reactionInst2.coefficients[0], reactionInst2.coefficients[2], reactionInst2.molarMass[0], reactionInst2.molarMass[2]);
+const secondAnswer2 = massToMassStoic(secondMass2, reactionInst2.coefficients[1], reactionInst2.coefficients[2], reactionInst2.molarMass[1], reactionInst2.molarMass[2]);
 
-const firstAnswer3 = massToMassStoic(firstMass3, reactionInst3.coefficients[0],reactionInst3.coefficients[3], reactionInst3.molarMass[0], reactionInst3.molarMass[3]);
-const secondAnswer3 = massToMassStoic(secondMass3, reactionInst3.coefficients[1],reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
+const firstAnswer3 = massToMassStoic(firstMass3, reactionInst3.coefficients[0], reactionInst3.coefficients[3], reactionInst3.molarMass[0], reactionInst3.molarMass[3]);
+const secondAnswer3 = massToMassStoic(secondMass3, reactionInst3.coefficients[1], reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
 
-const firstAnswer4 = massToMassStoic(firstMass4, reactionInst4.coefficients[0],reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
-const secondAnswer4 = massToMassStoic(secondMass4, reactionInst5.coefficients[1],reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
+const firstAnswer4 = massToMassStoic(firstMass4, reactionInst4.coefficients[0], reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
+const secondAnswer4 = massToMassStoic(secondMass4, reactionInst5.coefficients[1], reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
 
-const firstAnswer5 = massToMassStoic(firstMass5, reactionInst5.coefficients[0],reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
-const secondAnswer5 = massToMassStoic(secondMass5, reactionInst5.coefficients[1],reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
+const firstAnswer5 = massToMassStoic(firstMass5, reactionInst5.coefficients[0], reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
+const secondAnswer5 = massToMassStoic(secondMass5, reactionInst5.coefficients[1], reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
 
 const finalAnswer1 = compareAndReturnSmaller(firstAnswer1, secondAnswer1);
 document.getElementById('ans1').textContent = `Answer = ${finalAnswer1.toFixed(2)} g`;
@@ -116,10 +144,10 @@ document.getElementById('ans5').textContent = `Answer = ${finalAnswer5.toFixed(2
 
 //second version
 
-// calculate excess reactant -- need a new function
-const qText1_2 = `For the reaction below, how much ${reactionInst1.species[3]} is produced if ${firstMass1} g of ${reactionInst1.species[0]} reacts with ${secondMass1} g of ${reactionInst1.species[1]}?`;
+// calculate excess reactant
+const qText1_2 = `For the reaction below, determine the limiting reactant and how much ${reactionInst1.species[3]} can be produced if ${firstMass1} g of ${reactionInst1.species[0]} reacts with ${secondMass1} g of ${reactionInst1.species[1]}? How much of the excess reactant will be left?`;
 // calculate other product as well
-const qText2_2 = `Given the following equation, find the limiting reactant when ${firstMass2} g of ${reactionInst2.species[0]} reacts with ${secondMass2} g of ${reactionInst2.species[1]}. How much ${reactionInst2.species[2]} can be produced?`;
+const qText2_2 = `Given the following equation, find the limiting reactant when ${firstMass2} g of ${reactionInst2.species[0]} reacts with ${secondMass2} g of ${reactionInst2.species[1]}. How much ${reactionInst2.species[2]} can be produced? How much ${reactionInst2.species[3]} can be produced?`;
 //one reactant given in moles
 const qText3_2 = `For the reaction below, how much ${reactionInst3.species[3]} is produced if ${firstMass3} g of ${reactionInst3.species[0]} reacts with ${secondMass3} g of ${reactionInst3.species[1]}?`;
 //one reactant given volume and molarity
@@ -142,26 +170,36 @@ document.getElementById('eqn4').innerHTML = reactionInst4.rxn;
 document.getElementById('LR-q5-2').innerHTML = qText5_2;
 document.getElementById('eqn5-2').innerHTML = reactionInst5.rxn;
 
-const firstAnswer1_2 = massToMassStoic(firstMass1, reactionInst1.coefficients[0],reactionInst1.coefficients[3], reactionInst1.molarMass[0], reactionInst1.molarMass[3]);
-const secondAnswer1_2 = massToMassStoic(secondMass1, reactionInst1.coefficients[1],reactionInst1.coefficients[3], reactionInst1.molarMass[1], reactionInst1.molarMass[3]);
+const firstAnswer1_2 = massToMassStoic(firstMass1, reactionInst1.coefficients[0], reactionInst1.coefficients[3], reactionInst1.molarMass[0], reactionInst1.molarMass[3]);
+const secondAnswer1_2 = massToMassStoic(secondMass1, reactionInst1.coefficients[1], reactionInst1.coefficients[3], reactionInst1.molarMass[1], reactionInst1.molarMass[3]);
 
-const firstAnswer2_2 = massToMassStoic(firstMass2, reactionInst2.coefficients[0],reactionInst2.coefficients[2], reactionInst2.molarMass[0], reactionInst2.molarMass[2]);
-const secondAnswer2_2 = massToMassStoic(secondMass2, reactionInst2.coefficients[1],reactionInst2.coefficients[2], reactionInst2.molarMass[1], reactionInst2.molarMass[2]);
+const firstAnswer2_2 = massToMassStoic(firstMass2, reactionInst2.coefficients[0], reactionInst2.coefficients[2], reactionInst2.molarMass[0], reactionInst2.molarMass[2]);
+const secondAnswer2_2 = massToMassStoic(secondMass2, reactionInst2.coefficients[1], reactionInst2.coefficients[2], reactionInst2.molarMass[1], reactionInst2.molarMass[2]);
 
-const firstAnswer3_2 = massToMassStoic(firstMass3, reactionInst3.coefficients[0],reactionInst3.coefficients[3], reactionInst3.molarMass[0], reactionInst3.molarMass[3]);
-const secondAnswer3_2 = massToMassStoic(secondMass3, reactionInst3.coefficients[1],reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
+const firstAnswer2_3 = massToMassStoic(firstMass2, reactionInst2.coefficients[0], reactionInst2.coefficients[3], reactionInst2.molarMass[0], reactionInst2.molarMass[3]);
+const secondAnswer2_3 = massToMassStoic(secondMass2, reactionInst2.coefficients[1], reactionInst2.coefficients[3], reactionInst2.molarMass[1], reactionInst2.molarMass[3]);
 
-const firstAnswer4_2 = massToMassStoic(firstMass4, reactionInst4.coefficients[0],reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
-const secondAnswer4_2 = massToMassStoic(secondMass4, reactionInst5.coefficients[1],reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
+const firstAnswer3_2 = massToMassStoic(firstMass3, reactionInst3.coefficients[0], reactionInst3.coefficients[3], reactionInst3.molarMass[0], reactionInst3.molarMass[3]);
+const secondAnswer3_2 = massToMassStoic(secondMass3, reactionInst3.coefficients[1], reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
 
-const firstAnswer5_2 = massToMassStoic(firstMass5, reactionInst5.coefficients[0],reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
-const secondAnswer5_2 = massToMassStoic(secondMass5, reactionInst5.coefficients[1],reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
+const firstAnswer4_2 = massToMassStoic(firstMass4, reactionInst4.coefficients[0], reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
+const secondAnswer4_2 = massToMassStoic(secondMass4, reactionInst5.coefficients[1], reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
 
+const firstAnswer5_2 = massToMassStoic(firstMass5, reactionInst5.coefficients[0], reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
+const secondAnswer5_2 = massToMassStoic(secondMass5, reactionInst5.coefficients[1], reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
+
+// testing answer from different function
+// firstMass1, reactionInst1.coefficients[0],reactionInst1.coefficients[3], reactionInst1.molarMass[0], reactionInst1.molarMass[3]
+// params for below function: mass1, mass2, coef1, coef2, mm1, mm2
+const comparingFinalAns1_2 = excessMassFromLR(firstMass1, secondMass1, reactionInst1.coefficients[0], reactionInst1.coefficients[1], reactionInst1.molarMass[0], reactionInst1.molarMass[1], reactionInst1.species[0], reactionInst1.species[1]);
 const finalAnswer1_2 = compareAndReturnSmaller(firstAnswer1_2, secondAnswer1_2);
-document.getElementById('ans1-2').textContent = `Answer = ${finalAnswer1_2.toFixed(2)} g`;
 
+document.getElementById('ans1-2').innerHTML = `LR is ${comparingFinalAns1_2[1]}; ${finalAnswer1_2.toFixed(2)} g produced; ${comparingFinalAns1_2[0].toFixed(2)} g excess of ${comparingFinalAns1_2[2]}.`;
+
+const limitingReactant = excessMassFromLR(firstMass2, secondMass2, reactionInst2.coefficients[0], reactionInst2.coefficients[1], reactionInst2.molarMass[0], reactionInst2.molarMass[1], reactionInst2.species[0], reactionInst2.species[1])
 const finalAnswer2_2 = compareAndReturnSmaller(firstAnswer2_2, secondAnswer2_2);
-document.getElementById('ans2-2').textContent = `Answer = ${finalAnswer2_2.toFixed(2)} g`;
+const finalAnswer2_3 = compareAndReturnSmaller(firstAnswer2_3, secondAnswer2_3);
+document.getElementById('ans2-2').innerHTML = `LR is ${limitingReactant[1]}; ${finalAnswer2_2.toFixed(2)} g ${reactionInst2.species[2]}; ${finalAnswer2_3.toFixed(2)} g ${reactionInst2.species[3]}.`;
 
 const finalAnswer3_2 = compareAndReturnSmaller(firstAnswer3_2, secondAnswer3_2);
 document.getElementById('ans3-2').textContent = `Answer = ${finalAnswer3_2.toFixed(2)} g`;
