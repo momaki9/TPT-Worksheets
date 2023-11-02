@@ -209,3 +209,165 @@ document.getElementById('ans4-2').textContent = `Answer = ${finalAnswer4_2.toFix
 
 const finalAnswer5_2 = compareAndReturnSmaller(firstAnswer5_2, secondAnswer5_2);
 document.getElementById('ans5-2').textContent = `Answer = ${finalAnswer5_2.toFixed(2)} g`;
+
+
+// version 1 - Identify
+
+const allReactions = [
+    {
+        rxn: "Cu + 4HNO<sub>3</sub> &rarr; Cu(NO<sub>3</sub>)<sub>2</sub> + 2NO<sub>2</sub> + 2H<sub>2</sub>O",
+        species: ["Cu", "HNO<sub>3</sub>", "Cu(NO<sub>2</sub>)<sub>3</sub>", "NO<sub>2</sub>", "H<sub>2</sub>O"],
+        coefficients: [1, 4, 1, 2, 2],
+        molarMass: [63.546, 63.01, 187.56, 46.0055, 18.01528]
+    },
+    {
+        rxn: "2Na + 2H<sub>2</sub>O &rarr; 2NaOH + H<sub>2</sub>",
+        species: ["Na", "H<sub>2</sub>O", "NaOH", "H<sub>2</sub>"],
+        coefficients: [2, 2, 2, 1],
+        molarMass: [22.989769, 18.01528, 39.997, 2.016]
+    },
+    {
+        rxn: "AgNO<sub>3</sub> + NaCl &rarr; AgCl + NaNO<sub>3</sub>",
+        species: ["AgNO<sub>3</sub>", "NaCl", "AgCl", "NaNO<sub>3</sub>"],
+        coefficients: [1, 1, 1, 1],
+        molarMass: [169.87, 58.44, 143.32, 84.9947]
+    },
+    {
+        rxn: "2Fe + 3H<sub>2</sub>SO<sub>4</sub> &rarr; Fe<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> + 3H<sub>2</sub>",
+        species: ["Fe", "H<sub>2</sub>SO<sub>4</sub>", "Fe<sub>2</sub>(SO<sub>4</sub>)<sub>2</sub>", "H<sub>2</sub>"],
+        coefficients: [2, 3, 1, 3],
+        molarMass: [55.845, 98.07228, 399.8598, 2.016]
+    },
+    {
+        rxn: "Mg(OH)<sub>2</sub> + 2HCl  &rarr;  MgCl<sub>2</sub> + 2H<sub>2</sub>O",
+        species: ["Mg(OH)<sub>2</sub>", "HCl", "MgCl<sub>2</sub>", "H<sub>2</sub>O"],
+        coefficients: [1, 2, 1, 2],
+        molarMass: [58.31848, 36.45384, 95.196, 18.01528]
+    },
+    {
+        rxn: "2H<sub>3</sub>PO<sub>4</sub> + 3Mg(OH)<sub>2</sub>  &rarr;  Mg<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub> + 6H<sub>2</sub>O",
+        species: ["H<sub>3</sub>PO<sub>4</sub>", "Mg(OH)<sub>2</sub>", "Mg<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub>", "H<sub>2</sub>O"],
+        coefficients: [2, 3, 1, 6],
+        molarMass: [97.994882, 58.31848, 262.3854724, 18.01528]
+    },
+    {
+        rxn: "2C<sub>6</sub>H<sub>14</sub>O<sub>4</sub> + 15O<sub>2</sub> &rarr; 12CO<sub>2</sub> + 14H<sub>2</sub>O",
+        species: ["C<sub>6</sub>H<sub>14</sub>O<sub>4</sub>", "O<sub>2</sub>", "CO<sub>2</sub>", "H<sub>2</sub>O"],
+        coefficients: [2, 15, 12, 14],
+        molarMass: [150.17, 31.999, 44.01, 18.01528]
+    },
+    {
+        rxn: "2NH<sub>3</sub> + CO<sub>2</sub> &rarr; CO(NH<sub>2</sub>)<sub>2</sub> + H<sub>2</sub>O",
+        species: ["NH<sub>3</sub>", "CO<sub>2</sub>", "CO(NH<sub>2</sub>)<sub>2</sub>", "H<sub>2</sub>O"],
+        coefficients: [2, 1, 1, 1],
+        molarMass: [17.031, 44.01, 60.06, 18.01528]
+    },
+    {
+        rxn: "2Al + 6HCl &rarr; 2AlCl<sub>3</sub> + 3H<sub>2</sub>",
+        species: ["Al", "HCl", "AlCl<sub>3</sub>", "3H<sub>2</sub>"],
+        coefficients: [2, 6, 2, 3],
+        molarMass: [28.01, 2.016, 32.04]
+    },
+    {
+        rxn: "CO + 2H<sub>2</sub> &rarr; CH<sub>3</sub>OH",
+        species: ["CO", "2H<sub>2</sub>", "CH<sub>3</sub>OH"],
+        coefficients: [1, 2, 1],
+        molarMass: [28.01, 2.016, 32.04]
+    }
+];
+
+const identifyLRfromMass = function (R1, R2, mass1, mass2, coef1, coef2, mm1, mm2) {
+    const moles1 = mass1 / mm1;
+    const moles2 = mass2 / mm2;
+    const moles2Needed = moles1 * (coef2 / coef1);
+    let LR;
+    let ER;
+    if (moles2Needed > moles2) {
+        LR = R2;
+        ER = R1;
+    } else if (moles2Needed < moles2) {
+        LR = R1;
+        ER = R2;
+    }
+    return [LR, ER];
+};
+
+const massValueArray = generateNumArr(10.1, 60.9, 0.2, 1);
+const contentEl1 = document.getElementById("LR-v1-1");
+const contentEl2 = document.getElementById("LR-v1-2");
+const contentEl3 = document.getElementById("LR-v1-3");
+const contentEl4 = document.getElementById("LR-v1-4");
+
+for (let i = 0; i < 3; i++) {
+    const instanceRxn = selectNum(allReactions);
+    const rxn = instanceRxn.rxn;
+    const R1 = instanceRxn.species[0];
+    const coef1 = instanceRxn.coefficients[0];
+    const mm1 = instanceRxn.molarMass[0];
+    const R2 = instanceRxn.species[1];
+    const coef2 = instanceRxn.coefficients[1];
+    const mm2 = instanceRxn.molarMass[1];
+    const mass1 = selectNum(massValueArray);
+    const mass2 = selectNum(massValueArray);
+    const answer = identifyLRfromMass(R1, R2, mass1, mass2, coef1, coef2, mm1, mm2)[0];
+    const listEl = document.createElement("li");
+    listEl.setAttribute("id", `instance-${i}`)
+    listEl.innerHTML = `Find the limiting reactant when ${mass1} g of ${R1} reacts with ${mass2} g of ${R2} according to the balanced chemical equation: ${rxn} (Answer is ${answer})`;
+    contentEl1.appendChild(listEl);
+};
+
+for (let i = 3; i < 6; i++) {
+    const instanceRxn = selectNum(allReactions);
+    const rxn = instanceRxn.rxn;
+    const R1 = instanceRxn.species[0];
+    const coef1 = instanceRxn.coefficients[0];
+    const mm1 = instanceRxn.molarMass[0];
+    const R2 = instanceRxn.species[1];
+    const coef2 = instanceRxn.coefficients[1];
+    const mm2 = instanceRxn.molarMass[1];
+    const mass1 = selectNum(massValueArray);
+    const mass2 = selectNum(massValueArray);
+    const answer = identifyLRfromMass(R1, R2, mass1, mass2, coef1, coef2, mm1, mm2)[0];
+    const listEl = document.createElement("li");
+    listEl.setAttribute("id", `instance-${i}`)
+    listEl.innerHTML = `Consider the balanced equation ${rxn} Identify the limiting reactant if ${mass1} g of ${R1} reacts with ${mass2} g of ${R2}. (Answer is ${answer})`;
+    contentEl2.appendChild(listEl);
+};
+
+for (let i = 6; i < 9; i++) {
+    const instanceRxn = selectNum(allReactions);
+    const rxn = instanceRxn.rxn;
+    const R1 = instanceRxn.species[0];
+    const coef1 = instanceRxn.coefficients[0];
+    const mm1 = instanceRxn.molarMass[0];
+    const R2 = instanceRxn.species[1];
+    const coef2 = instanceRxn.coefficients[1];
+    const mm2 = instanceRxn.molarMass[1];
+    const mass1 = selectNum(massValueArray);
+    const mass2 = selectNum(massValueArray);
+    const answer = identifyLRfromMass(R1,R2,mass1,mass2,coef1,coef2,mm1,mm2)[0];
+    const listEl = document.createElement("li");
+    listEl.setAttribute("id", `instance-${i}`)
+    listEl.innerHTML = `Identify the limiting reactant when ${mass1} g of ${R1} reacts with ${mass2} g of ${R2} ${rxn} (Answer is ${answer})`;
+    contentEl3.appendChild(listEl);
+};
+
+for (let i = 9; i < 12; i++) {
+    const instanceRxn = selectNum(allReactions);
+    const rxn = instanceRxn.rxn;
+    const R1 = instanceRxn.species[0];
+    const coef1 = instanceRxn.coefficients[0];
+    const mm1 = instanceRxn.molarMass[0];
+    const R2 = instanceRxn.species[1];
+    const coef2 = instanceRxn.coefficients[1];
+    const mm2 = instanceRxn.molarMass[1];
+    const mass1 = selectNum(massValueArray);
+    const mass2 = selectNum(massValueArray);
+    const answer = identifyLRfromMass(R1,R2,mass1,mass2,coef1,coef2,mm1,mm2)[0];
+    const listEl = document.createElement("li");
+    listEl.setAttribute("id", `instance-${i}`)
+    listEl.innerHTML = `Given the following equation, find the limiting reactant when ${mass1} g of ${R1} reacts with ${mass2} g of ${R2}. ${rxn} (Answer is ${answer})`;
+    contentEl4.appendChild(listEl);
+};
+
+// TODO: Could add more variation if moles are used instead of mass for either or both reactants
