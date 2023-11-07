@@ -20,7 +20,7 @@ const generateNumArr = function (num1, num2, inc, dec) {
 generateNumArr(19, 21, 0.1, 1);
 
 // write a function that randomly returns one value from an array (array given as param)
-const selectNum = function(arr) {
+const selectNum = function (arr) {
     var randomValue = arr[Math.floor(Math.random() * arr.length)];
     // console.log(randomValue);
     return randomValue;
@@ -89,7 +89,7 @@ const multiplyOrDivide = function (num1, num2, operation) {
 // this function takes in the following params: given mass (gMass), stoich1, stoich2 (stoichiometric coefficient of species 1 and 2)
 // mm1 and mm2, are the molar masses of species 1 and 2
 // returns the answer (in grams; does not take sigfigs into account)
-const massToMassStoic = function(gMass, stoich1, stoich2, mm1, mm2) {
+const massToMassStoic = function (gMass, stoich1, stoich2, mm1, mm2) {
     const moles1 = gMass / mm1;
     const stoichRatio = stoich2 / stoich1;
     const moles2 = moles1 * stoichRatio;
@@ -98,10 +98,11 @@ const massToMassStoic = function(gMass, stoich1, stoich2, mm1, mm2) {
 };
 
 // write a function that compares two nums and returns the lowest value
-const compareAndReturnSmaller = function(num1, num2){
+const compareAndReturnSmaller = function (num1, num2) {
     const array = [];
     array.push(num1, num2);
     const smallerValue = Math.min(...array);
     return smallerValue;
 };
 
+module.exports = { generateNumArr, selectNum, addOrSubtract, multiplyOrDivide, massToMassStoic, compareAndReturnSmaller };

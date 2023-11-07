@@ -1,5 +1,52 @@
 //This function detemines the excess mass (in g) given mass of 2 reactants, their coefficients, and their molar masses
 //This function returns excess mass (excessMass)
+
+// write a function that generates a list of numbers from num1 to num2, given an incrementor (inc) and number of decimals
+const generateNumArr = function (num1, num2, inc, dec) {
+    let numArray = [];
+    if (num1 == num2) {
+        return;
+    };
+    if (num2 > num1) {
+        for (let index = num1; index <= num2; index += inc) {
+            numArray.push(index.toFixed(dec));
+        }
+    } else {
+        for (let i = num1; i >= num2; i -= inc) {
+            numArray.push(i.toFixed(dec));
+        }
+    };
+    return numArray;
+};
+
+// write a function that randomly returns one value from an array (array given as param)
+const selectNum = function (arr) {
+    var randomValue = arr[Math.floor(Math.random() * arr.length)];
+    // console.log(randomValue);
+    return randomValue;
+};
+
+
+// write a function that uses stiochiometric coefficients to convert the mass of one species to the mass of another
+// this function takes in the following params: given mass (gMass), stoich1, stoich2 (stoichiometric coefficient of species 1 and 2)
+// mm1 and mm2, are the molar masses of species 1 and 2
+// returns the answer (in grams; does not take sigfigs into account)
+const massToMassStoic = function (gMass, stoich1, stoich2, mm1, mm2) {
+    const moles1 = gMass / mm1;
+    const stoichRatio = stoich2 / stoich1;
+    const moles2 = moles1 * stoichRatio;
+    const answer = moles2 * mm2;
+    return answer;
+};
+
+// write a function that compares two nums and returns the lowest value
+const compareAndReturnSmaller = function (num1, num2) {
+    const array = [];
+    array.push(num1, num2);
+    const smallerValue = Math.min(...array);
+    return smallerValue;
+};
+
 const excessMassFromLR = function (mass1, mass2, coef1, coef2, mm1, mm2, R1, R2) {
     const moles1 = mass1 / mm1;
     const moles2 = mass2 / mm2;
@@ -345,7 +392,7 @@ for (let i = 6; i < 9; i++) {
     const mm2 = instanceRxn.molarMass[1];
     const mass1 = selectNum(massValueArray);
     const mass2 = selectNum(massValueArray);
-    const answer = identifyLRfromMass(R1,R2,mass1,mass2,coef1,coef2,mm1,mm2)[0];
+    const answer = identifyLRfromMass(R1, R2, mass1, mass2, coef1, coef2, mm1, mm2)[0];
     const listEl = document.createElement("li");
     listEl.setAttribute("id", `instance-${i}`)
     listEl.innerHTML = `Identify the limiting reactant when ${mass1} g of ${R1} reacts with ${mass2} g of ${R2} ${rxn} (Answer is ${answer})`;
@@ -363,7 +410,7 @@ for (let i = 9; i < 12; i++) {
     const mm2 = instanceRxn.molarMass[1];
     const mass1 = selectNum(massValueArray);
     const mass2 = selectNum(massValueArray);
-    const answer = identifyLRfromMass(R1,R2,mass1,mass2,coef1,coef2,mm1,mm2)[0];
+    const answer = identifyLRfromMass(R1, R2, mass1, mass2, coef1, coef2, mm1, mm2)[0];
     const listEl = document.createElement("li");
     listEl.setAttribute("id", `instance-${i}`)
     listEl.innerHTML = `Given the following equation, find the limiting reactant when ${mass1} g of ${R1} reacts with ${mass2} g of ${R2}. ${rxn} (Answer is ${answer})`;
