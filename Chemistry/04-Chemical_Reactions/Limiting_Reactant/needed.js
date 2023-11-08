@@ -47,13 +47,116 @@ const reactions = [
         species: ["Cu", "HNO<sub>3</sub>", "Cu(NO<sub>2</sub>)<sub>3</sub>", "NO<sub>2</sub>", "H<sub>2</sub>O"],
         coefficients: [1, 4, 1, 2, 2],
         molarMass: [63.546, 63.01, 187.56, 46.0055, 18.01528]
-    },
-    {
-        rxn: "2NaOH + Cl<sub>2</sub> + 2NH<sub>3</sub> &rarr; N<sub>2</sub>H<sub>4</sub> + 2NaCl + 2H<sub>2</sub>O",
-        species: ["NaOH", "Cl<sub>2</sub>", "NH<sub>3</sub>", "N<sub>2</sub>H<sub>4</sub>", "NaCl", "H<sub>2</sub>O"],
-        coefficients: [2, 1, 2, 1, 2, 2],
-        molarMass: [39.997, 35.453, 17.031, 32.0452, 58.44, 18.01528]
     }
 ];
 
+const generateNumArr = function (num1, num2, inc, dec) {
+    let numArray = [];
+    if (num1 == num2) {
+        return;
+    };
+    if (num2 > num1) {
+        for (let index = num1; index <= num2; index += inc) {
+            numArray.push(index.toFixed(dec));
+        }
+    } else {
+        for (let i = num1; i >= num2; i -= inc) {
+            numArray.push(i.toFixed(dec));
+        }
+    };
+    return numArray;
+};
 
+const selectNum = function (arr) {
+    var randomValue = arr[Math.floor(Math.random() * arr.length)];
+    // console.log(randomValue);
+    return randomValue;
+};
+
+// create a function that calculates the mass of product given two reactant's mass
+const massProductFromLR = function (m1, m2, mm1, mm2, mm3, coef1, coef2, coef3) {
+    let mass = 0;
+    const moles1 = m1 / mm1;
+    const moles2 = m2 / mm2;
+    const moles2Needed = moles1 * (coef2 / coef1);
+    if (moles2 > moles2Needed) {
+        mass = moles1 * (coef3 / coef1) * mm3;
+    } else if (moles2 < moles2Needed) {
+        mass = moles2 * (coef3 / coef2) * mm3;
+    }
+    return mass;
+};
+
+// This function roundes a given value to a given number of sig figs
+const roundToGivenSigFig = function (sigfig, value) {
+    const split = value.toString().split(".");
+    const numValue = split[0].length
+    const numDecimal = sigfig - numValue
+    const numb = Number(value).toFixed(numDecimal)
+    return numb;
+};
+
+//This function takes in an array parameter (nums) and returns the least number of sig figs 
+// must contain decimals not ending in 0
+const findLeastSigFig = function (nums) {
+    let numArray = [];
+    for (let i = 0; i < nums.length; i++) {
+        var num = Number(nums[i]);
+        var decimal = num.toString().split('.')[1].length;
+        var value = num.toString().split('.')[0].length;
+        var digits = decimal + value;
+        numArray.push(digits);
+    }
+    return Math.min(...numArray);
+};
+
+// create a function that calculates the mass of product given one reactant's mass and one moles
+const massProdFromLRwithMole = function (m1, mol, mm1, mm3, coef1, coef2, coef3) {
+    let mass = 0;
+    const moles1 = m1 / mm1;
+    const moles2Needed = moles1 * (coef2 / coef1);
+    if (mol > moles2Needed) {
+        mass = moles1 * (coef3 / coef1) * mm3;
+    } else if (mol < moles2Needed) {
+        mass = mol * (coef3 / coef2) * mm3;
+    }
+    return mass;
+};
+
+// create a function that calculates the mass of product given one reactant's mass and one moles
+const massProdFromLRwMoles = function (mol1, mol2, mm, coef1, coef2, coef3) {
+    let mass = 0;
+    const moles2Needed = mol1 * (coef2 / coef1);
+    if (mol1 > moles2Needed) {
+        mass = mol1 * (coef3 / coef1) * mm;
+    } else if (mol1 < moles2Needed) {
+        mass = mol2 * (coef3 / coef2) * mm;
+    }
+    return mass;
+};
+
+// create a function that calculates the moles of product given two reactant's mass
+const moleProductFromLR = function (m1, m2, mm1, mm2, coef1, coef2, coef3) {
+    let mol = 0;
+    const moles1 = m1 / mm1;
+    const moles2 = m2 / mm2;
+    const moles2Needed = moles1 * (coef2 / coef1);
+    if (moles2 > moles2Needed) {
+        mol = moles1 * (coef3 / coef1);
+    } else if (moles2 < moles2Needed) {
+        mol = moles2 * (coef3 / coef2);
+    }
+    return mol;
+};
+
+// create a function that calculates the moles of product given two reactant's mass
+const moleProductFromLRusingMoles = function (mol1, mol2, coef1, coef2, coef3) {
+    let mol = 0;
+    const moles2Needed = mol1 * (coef2 / coef1);
+    if (mol2 > moles2Needed) {
+        mol = mol1 * (coef3 / coef1);
+    } else if (mol2 < moles2Needed) {
+        mol = mol2 * (coef3 / coef2);
+    }
+    return mol;
+};

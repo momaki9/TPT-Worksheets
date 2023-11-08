@@ -9,8 +9,7 @@ const findLeastSigFig = function (nums) {
         var digits = decimal + value;
         numArray.push(digits);
     }
-    console.log(Math.min(...numArray))
-    return numArray;
+    return Math.min(...numArray);
 };
 
 // console.log(multiplyOrDivide([30.2, 2.105, 6.01, 2.006, 10.01]))
