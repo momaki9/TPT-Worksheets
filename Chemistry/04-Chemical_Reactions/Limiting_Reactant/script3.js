@@ -110,7 +110,7 @@ for (let i = 0; i < 2; i++) {
     const LR = identifyLRfromMass(R1, R2, mass1, mass2, coef1, coef2, mm1, mm2)
     const listEl = document.createElement('li');
     listEl.setAttribute('id', i);
-    listEl.innerHTML = `Consider the balanced equation below. Identify the limiting reactant if ${mass1} g of ${R2} reacts with ${mass2} g of ${R1}. How much (in grams) of ${P} can be produced? How many moles of ${P} can be produced? ${EQN}`;
+    listEl.innerHTML = `Consider the balanced equation below. Identify the limiting reactant if ${mass2} g of ${R2} reacts with ${mass1} g of ${R1}. How much (in grams) of ${P} can be produced? How many moles of ${P} can be produced? ${EQN}`;
     const paraEl = document.createElement("p");
     paraEl.innerHTML = `Limiting reactant is ${LR[0]}; mass produced = ${massAns} g; moles produced = ${molAns} mol`;
     contentEl4.appendChild(listEl);
@@ -142,7 +142,7 @@ for (let i = 2; i < 4; i++) {
     const LR = identifyLRfromMass(R1, R2, mass1, mass2, coef1, coef2, mm1, mm2)
     const listEl = document.createElement('li');
     listEl.setAttribute('id', i);
-    listEl.innerHTML = `Consider the balanced equation below. Identify the limiting reactant if ${mass1} g of ${R2} reacts with ${mole2} moles of ${R1}. How much (in grams) of ${P} can be produced? How many moles of ${P} can be produced? ${EQN}`;
+    listEl.innerHTML = `Consider the balanced equation below. Identify the limiting reactant if ${mass1} g of ${R1} reacts with ${mole2} moles of ${R2}. How much (in grams) of ${P} can be produced? How many moles of ${P} can be produced? ${EQN}`;
     const paraEl = document.createElement("p");
     paraEl.innerHTML = `Limiting reactant is ${LR[0]}; mass produced = ${massAns} g; moles produced = ${molAns} mol`;
     contentEl4.appendChild(listEl);

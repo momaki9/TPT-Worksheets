@@ -11,7 +11,7 @@ for (let i = 0; i < 3; i++) {
     const chosenRxn = chosenInst.rxn;
     const listEl = document.createElement('li');
     listEl.setAttribute("id", i);
-    listEl.innerHTML = `Determine how much (in g) ${chosenProduct} can be produced when ${mass1} g of ${chosenReactant2} reacts with ${mass2} g of ${chosenReactant1} according to the balanced chemical equation below: ${chosenRxn}`;
+    listEl.innerHTML = `Determine how much (in g) ${chosenProduct} can be produced when ${mass2} g of ${chosenReactant2} reacts with ${mass1} g of ${chosenReactant1} according to the balanced chemical equation below: ${chosenRxn}`;
     contentEl_v2.appendChild(listEl);
     //params are: m1, m2, mm1, mm2, mm3, coef1, coef2, coef3
     const unroundedAns = massProductFromLR(mass1,mass2,chosenInst.molarMass[0],chosenInst.molarMass[1],chosenInst.molarMass[2],chosenInst.coefficients[0],chosenInst.coefficients[1],chosenInst.coefficients[2]);
