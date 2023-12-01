@@ -122,7 +122,7 @@ const firstAnswer3 = massToMassStoic(firstMass3, reactionInst3.coefficients[0], 
 const secondAnswer3 = massToMassStoic(secondMass3, reactionInst3.coefficients[1], reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
 
 const firstAnswer4 = massToMassStoic(firstMass4, reactionInst4.coefficients[0], reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
-const secondAnswer4 = massToMassStoic(secondMass4, reactionInst5.coefficients[1], reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
+const secondAnswer4 = massToMassStoic(secondMass4, reactionInst4.coefficients[1], reactionInst4.coefficients[2], reactionInst4.molarMass[1], reactionInst4.molarMass[2]);
 
 const firstAnswer5 = massToMassStoic(firstMass5, reactionInst5.coefficients[0], reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
 const secondAnswer5 = massToMassStoic(secondMass5, reactionInst5.coefficients[1], reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
@@ -165,7 +165,7 @@ document.getElementById('LR-q3-2').innerHTML = qText3_2;
 document.getElementById('eqn3-2').innerHTML = reactionInst3.rxn;
 
 document.getElementById('LR-q4-2').innerHTML = qText4_2;
-document.getElementById('eqn4').innerHTML = reactionInst4.rxn;
+document.getElementById('eqn4-2').innerHTML = reactionInst4.rxn;
 
 document.getElementById('LR-q5-2').innerHTML = qText5_2;
 document.getElementById('eqn5-2').innerHTML = reactionInst5.rxn;
@@ -183,7 +183,7 @@ const firstAnswer3_2 = massToMassStoic(firstMass3, reactionInst3.coefficients[0]
 const secondAnswer3_2 = massToMassStoic(secondMass3, reactionInst3.coefficients[1], reactionInst3.coefficients[3], reactionInst3.molarMass[1], reactionInst3.molarMass[3]);
 
 const firstAnswer4_2 = massToMassStoic(firstMass4, reactionInst4.coefficients[0], reactionInst4.coefficients[2], reactionInst4.molarMass[0], reactionInst4.molarMass[2]);
-const secondAnswer4_2 = massToMassStoic(secondMass4, reactionInst5.coefficients[1], reactionInst5.coefficients[2], reactionInst5.molarMass[1], reactionInst5.molarMass[2]);
+const secondAnswer4_2 = massToMassStoic(secondMass4, reactionInst4.coefficients[1], reactionInst4.coefficients[2], reactionInst4.molarMass[1], reactionInst4.molarMass[2]);
 
 const firstAnswer5_2 = massToMassStoic(firstMass5, reactionInst5.coefficients[0], reactionInst5.coefficients[3], reactionInst5.molarMass[0], reactionInst5.molarMass[3]);
 const secondAnswer5_2 = massToMassStoic(secondMass5, reactionInst5.coefficients[1], reactionInst5.coefficients[3], reactionInst5.molarMass[1], reactionInst5.molarMass[3]);
@@ -216,7 +216,7 @@ document.getElementById('ans5-2').textContent = `Answer = ${finalAnswer5_2.toFix
 const allReactions = [
     {
         rxn: "Cu + 4HNO<sub>3</sub> &rarr; Cu(NO<sub>3</sub>)<sub>2</sub> + 2NO<sub>2</sub> + 2H<sub>2</sub>O",
-        species: ["Cu", "HNO<sub>3</sub>", "Cu(NO<sub>2</sub>)<sub>3</sub>", "NO<sub>2</sub>", "H<sub>2</sub>O"],
+        species: ["Cu", "HNO<sub>3</sub>", "Cu(NO<sub>3</sub>)<sub>2</sub>", "NO<sub>2</sub>", "H<sub>2</sub>O"],
         coefficients: [1, 4, 1, 2, 2],
         molarMass: [63.546, 63.012, 187.56, 46.0055, 18.01528]
     },
@@ -371,3 +371,4 @@ for (let i = 9; i < 12; i++) {
 };
 
 // TODO: Could add more variation if moles are used instead of mass for either or both reactants
+// TODO: fix questions where LR is being asked
