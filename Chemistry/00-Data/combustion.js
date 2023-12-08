@@ -1,14 +1,14 @@
-const unknownCompounds = 
-    {
-        emFormula: "C<sub>3</sub>H<sub>4</sub>O<sub>3</sub>",
-        molFormula: "",
-        products: ["CO<sub>2</sub>", "H<sub>2</sub>O"],
-        prodMM: [44.009, 18.015],
-        elms: {
-            elm: ["C", "H", "O"],
-            mm: [12.011, 1.0079, 15.999]
-        }
+const unknownCompounds =
+{
+    emFormula: "C<sub>3</sub>H<sub>4</sub>O<sub>3</sub>",
+    molFormula: "",
+    products: ["CO<sub>2</sub>", "H<sub>2</sub>O"],
+    prodMM: [44.009, 18.015],
+    elms: {
+        elm: ["C", "H", "O"],
+        mm: [12.011, 1.0079, 15.999]
     }
+}
 
 
 // glucose combustion as an example
@@ -44,7 +44,16 @@ const combustionProbSolver = (m, m1, m2, mm1, mm2, coef1, coef2, mmC, mmH, mmO) 
     const subC = molC / smallest;
     const subH = molH / smallest;
     const subO = molO / smallest;
-    return `C ${subC.toFixed(0)} H ${subH.toFixed(0)} O${subO}`;
+    console.log(`C = ${subC} H = ${subH} O = ${subO}`)
+    console.log(`C = ${subC.toFixed(2)} H = ${subH.toFixed(2)} O = ${subO.toFixed(2)}`)
+
+    if (subC.toFixed(2) == 1.00 && subH.toFixed(2) == 1.00 && subO.toFixed(2) == 1.00) {
+        return `CHO`;
+    } else if (subC.toFixed(2) == 1.00 && subH != 1 && subO.toFixed(2) == 1.00) {
+        return `CH<sub>${subH.toFixed(0)}</sub>O`;
+    } else if (subC.toFixed(0) != 1 && subH != 1 && subO == 1) {
+        return `C<sub>${subC.toFixed(0)}</sub>H<sub>${subH.toFixed(0)}</sub>O`;
+    }
 }
 
 const generateNumArr = function (num1, num2, inc, dec) {
