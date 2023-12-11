@@ -12,19 +12,30 @@ const unknownCompounds =
 
 
 // glucose combustion as an example
-const combustionEquations =
-{
-    eqn: "C6H12O6 + 6O2 => 6H2O + 6CO2",
-    compMM: 180.1548,
-    coef: 1,
-    prods: {
-        prod: ["CO2", "H2O"],
-        mm: [44.009, 18.015],
-        coef: [6, 6]
+const combustionEquations = [
+    {
+        eqn: "C6H12O6 + 6O2 => 6H2O + 6CO2",
+        compMM: [180.1548, 31.998, 18.015, 44.009],
+        elmMM: [12.011, 1.0079, 15.999],
+        compCoef: [1, 6, 6, 6],
+        elmCoef: [1, 2]
+    },
+    {
+        eqn: "C2H5OH + 3O2 => 2CO2 + 3H2O",
+        compMM: [46.0684, 31.998, 18.015, 44.009],
+        elmMM: [12.011, 1.0079, 15.999],
+        compCoef: [1, 3, 2, 3],
+        elmCoef: [1, 2]
+    },
+    {
+        eqn: "2C3H6O2 + 7O2 => 6CO2 + 6H2O",
+        compMM: [74.0784, 31.998, 18.015, 44.009],
+        elmMM: [12.011, 1.0079, 15.999],
+        compCoef: [2, 7, 6, 6],
+        elmCoef: [1, 2]
     }
-}
-
-
+];
+//mm, mm1, mm2, coef, coef1, coef2, coefC, coefH, mmC, mmH, mmO
 const generateComubstionMasses = function (mass, mm, mm1, mm2, coef, coef1, coef2) {
     const moles = mass / mm;
     const massP1 = moles * (coef1 / coef) * mm1;
@@ -41,20 +52,25 @@ const combustionProbSolver = (m, m1, m2, mm1, mm2, coef1, coef2, mmC, mmH, mmO) 
     const massO = m - (massC + massH);
     const molO = massO / mmO;
     const smallest = Math.min(molC, molH, molO);
-    const subC = molC / smallest;
-    const subH = molH / smallest;
-    const subO = molO / smallest;
-    console.log(`C = ${subC} H = ${subH} O = ${subO}`)
-    console.log(`C = ${subC.toFixed(2)} H = ${subH.toFixed(2)} O = ${subO.toFixed(2)}`)
+    let sub1 = molC / smallest;
+    let sub2 = molH / smallest;
+    let sub3 = molO / smallest;
+    console.log(`C = ${sub1} H = ${sub2} O = ${sub3}`)
+    console.log(`C = ${sub1.toFixed(2)} H = ${sub2.toFixed(2)} O = ${sub3.toFixed(2)}`)
 
-    if (subC.toFixed(2) == 1.00 && subH.toFixed(2) == 1.00 && subO.toFixed(2) == 1.00) {
+    if (sub1.toFixed(2) == 1.00 && sub2.toFixed(2) == 1.00 && sub3.toFixed(2) == 1.00) {
         return `CHO`;
-    } else if (subC.toFixed(2) == 1.00 && subH != 1 && subO.toFixed(2) == 1.00) {
-        return `CH<sub>${subH.toFixed(0)}</sub>O`;
-    } else if (subC.toFixed(0) != 1 && subH != 1 && subO == 1) {
-        return `C<sub>${subC.toFixed(0)}</sub>H<sub>${subH.toFixed(0)}</sub>O`;
+    } else if (sub1.toFixed(2) == 1.00 && sub2 != 1 && sub3.toFixed(2) == 1.00) {
+        return `CH<sub>${sub2.toFixed(0)}</sub>O`;
+    } else if (sub1.toFixed(0) != 1 && sub2 != 1 && sub3 == 1) {
+        return `C<sub>${sub1.toFixed(0)}</sub>H<sub>${sub2.toFixed(0)}</sub>O`;
+    } else if (sub1.toFixed(2) == 1.50 && sub2.toFixed(2) == 3.00 && sub3.toFixed(2) == 1.00) {
+        sub1 = 3;
+        sub2 = 6;
+        sub3 = 2;
+        return `C<sub>${sub1}</sub>H<sub>${sub2}</sub>O<sub>${sub3}</sub>`;
     }
-}
+};
 
 const generateNumArr = function (num1, num2, inc, dec) {
     let numArray = [];
