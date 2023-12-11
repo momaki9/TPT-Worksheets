@@ -1,19 +1,19 @@
-const unknownCompounds =
-{
-    emFormula: "C<sub>3</sub>H<sub>4</sub>O<sub>3</sub>",
-    molFormula: "",
-    products: ["CO<sub>2</sub>", "H<sub>2</sub>O"],
-    prodMM: [44.009, 18.015],
-    elms: {
-        elm: ["C", "H", "O"],
-        mm: [12.011, 1.0079, 15.999]
-    }
-}
-
-
-// glucose combustion as an example
-const combustionEquations = [
+// carbon and hydrogen only
+const instancesV1 = [
     {
+        name: "hexane",
+        eqn: "C6H12 + 9O2 => 6H2O + 6CO2",
+        compMM: [78.1134, 31.998, 18.015, 44.009],
+        elmMM: [12.011, 1.0079, 15.999],
+        compCoef: [1, 9, 6, 6],
+        elmCoef: [1, 2]
+    }
+];
+
+// carbon, hydrogen, and oxygen
+const instancesV2 = [
+    {
+        name: "glucose",
         eqn: "C6H12O6 + 6O2 => 6H2O + 6CO2",
         compMM: [180.1548, 31.998, 18.015, 44.009],
         elmMM: [12.011, 1.0079, 15.999],
@@ -21,6 +21,7 @@ const combustionEquations = [
         elmCoef: [1, 2]
     },
     {
+        name: "ethanol",
         eqn: "C2H5OH + 3O2 => 2CO2 + 3H2O",
         compMM: [46.0684, 31.998, 18.015, 44.009],
         elmMM: [12.011, 1.0079, 15.999],
@@ -28,13 +29,31 @@ const combustionEquations = [
         elmCoef: [1, 2]
     },
     {
+        name: "propanoic acid",
         eqn: "2C3H6O2 + 7O2 => 6CO2 + 6H2O",
         compMM: [74.0784, 31.998, 18.015, 44.009],
         elmMM: [12.011, 1.0079, 15.999],
         compCoef: [2, 7, 6, 6],
         elmCoef: [1, 2]
+    },
+    {
+        name: "Methyl propionate",
+        eqn: "C4H8O2 + 5O2 => 4CO2 + 4H2O",
+        compMM: [88.1052, 31.998, 18.015, 44.009],
+        elmMM: [12.011, 1.0079, 15.999],
+        compCoef: [1, 5, 4, 4],
+        elmCoef: [1, 2]
+    },
+    {
+        name: "acetone",
+        eqn: "C3H6O + 4O2 => 3CO2 + 3H2O",
+        compMM: [58.0794, 31.998, 18.015, 44.009],
+        elmMM: [12.011, 1.0079, 15.999],
+        compCoef: [1, 4, 3, 3],
+        elmCoef: [1, 2]
     }
 ];
+
 //mm, mm1, mm2, coef, coef1, coef2, coefC, coefH, mmC, mmH, mmO
 const generateComubstionMasses = function (mass, mm, mm1, mm2, coef, coef1, coef2) {
     const moles = mass / mm;
